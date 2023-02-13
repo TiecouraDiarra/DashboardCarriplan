@@ -1,0 +1,63 @@
+<sb-layout-auth style="background-color: black;">
+    <!-- <div class=""  style="background-color: transparent !important; height: 90vh; width: 100% !important;"> -->
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">Connexion</h3>
+                    </div>
+                    <div class="card-body">
+                        <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+                            novalidate>
+                            <div class="form-group">
+                                <label class="small mb-1" for="numeroOrEmail">Email</label>
+                                <input type="text" class="form-control" name="numeroOrEmail"
+                                    [(ngModel)]="form.numeroOrEmail" required #numeroOrEmail="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && numeroOrEmail.errors }"
+                                    placeholder="Entrez votre address email" />
+                                <div style="text-align: center;" *ngIf="numeroOrEmail.errors && f.submitted"
+                                    class="invalid-feedback">
+                                    <div *ngIf="numeroOrEmail.errors['required']">Numero ou Email obligatoire</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="password">Mot de
+                                    passe</label>
+                                <input type="password" class="form-control" name="password" [(ngModel)]="form.password"
+                                    required minlength="6" #password="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+                                    placeholder="Entrez votre mot de passe" />
+                                <div style="text-align: center;" *ngIf="password.errors && f.submitted"
+                                    class="invalid-feedback">
+                                    <div *ngIf="password.errors['required']">Mot de passe obligatoire</div>
+                                    <div *ngIf="password.errors['minlength']">
+                                        Mot de passe minimun 6 caractères
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                    <div class="custom-control custom-checkbox"><input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" /><label class="custom-control-label" for="rememberPasswordCheck">Remember password</label></div>
+                                </div> -->
+                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                <a class="small" routerLink="/auth/forgot-password">Mot de passe oublié ?</a>
+                                <a class="btn btn-primary" type="submit" (click)="onSubmit()">Se connecter</a>
+                            </div>
+
+                            <div class="form-group">
+                                <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
+                                    Login failed: {{ errorMessage }}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="card-footer text-center">
+                            <div class="small"><a routerLink="/auth/register">Need an account? Sign up!</a></div>
+                        </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+</sb-layout-auth>

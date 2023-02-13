@@ -1,0 +1,14 @@
+// Import Bootstrap variables for use within theme
+@import "bootstrap/scss/functions.scss";
+@import "bootstrap/scss/variables.scss";
+
+// Import spacing variables
+@import "./variables/spacing.scss";
+
+// Import navigation variables
+@import "./variables/navigation.scss";
+
+
+div#layoutAuthentication_content {
+    background-color: #5AC7EB !important;
+}
